@@ -1,0 +1,27 @@
+{
+  "name": "CUBID",
+  "version": "0.0.0",
+  "description": "CUstomizable BIo Designer",
+  "scripts": {
+    "watch": "watchify -v -t [ babelify --presets [ react ] ] browser/main.js -o static/bundle.js",
+    "webpack": "webpack --progress --colors --watch",
+    "start": "node index.js"
+  },
+  "dependencies": {
+     "express": "latest",
+     "path": "latest",
+     "react": "latest",
+     "react-dom": "latest",
+     "d3": "latest",
+     "cola": "latest",
+     "babel": "latest",
+     "babel-loader": "latest",
+     "babelify": "latest",
+     "babel-preset-react": "latest",
+     "brace": "latest",
+     "babel-plugin-transform-react-jsx": "latest",
+     "babel-preset-es2015": "latest"
+   },
+   "repository": "N/A",
+   "license": "MIT"
+ }

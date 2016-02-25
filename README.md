@@ -1,2 +1,3 @@
-# cubid
+# CuBiD
+
 CUstomizable BIo Designer
