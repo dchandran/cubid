@@ -16,11 +16,14 @@
      "cola": "latest",
      "babel": "latest",
      "babel-loader": "latest",
+     "style-loader": "latest",
+     "css-loader": "latest",
      "babelify": "latest",
      "babel-preset-react": "latest",
      "brace": "latest",
      "babel-plugin-transform-react-jsx": "latest",
-     "babel-preset-es2015": "latest"
+     "babel-preset-es2015": "latest",
+     "react-split-pane": "latest"
    },
    "repository": "N/A",
    "license": "MIT"

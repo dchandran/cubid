@@ -1,20 +1,44 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const SplitPane = require('react-split-pane');
+import './main.css'
 
-class Hello extends React.Component {
-  static propTypes() {
-    return {
-      name: React.PropTypes.string,
-    };
-  }
+const d3Network = {
 
-  constructor(props) {
-    super(props);
-  }
+  create: function(el, state) {
+    const width = el.clientWidth;
+    const height = el.clientHeight;
 
-  render() {
-    var width = 800,
-        height = 400;
+    this.svg = d3.select(el).append('svg')
+        .attr('class', 'd3')
+        .attr('width', width)
+        .attr('height', height);
+
+    this.update(el, state);
+  },
+
+  getAlignmentBounds: function(vs, c) {
+      var os = c.offsets;
+      if (c.axis === 'x') {
+          var x = vs[os[0].node].x;
+          c.bounds = new cola.vpsc.Rectangle(x, x,
+              Math.min.apply(Math, os.map(function (o) { return vs[o.node].bounds.y - 20; })),
+              Math.max.apply(Math, os.map(function (o) { return vs[o.node].bounds.Y + 20; })));
+      } else {
+          var y = vs[os[0].node].y;
+          c.bounds = new cola.vpsc.Rectangle(
+              Math.min.apply(Math, os.map(function (o) { return vs[o.node].bounds.x - 20; })),
+              Math.max.apply(Math, os.map(function (o) { return vs[o.node].bounds.X + 20; })),
+              y, y);
+      }
+      return c.bounds;
+  },
+
+  update: function(el, state) {
+    const self = this;
+
+    var width = el.clientWidth,
+        height = el.clientHeight;
 
     var color = d3.scale.category20();
 
@@ -23,26 +47,7 @@ class Hello extends React.Component {
         .avoidOverlaps(true)
         .size([width, height]);
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
-    function getAlignmentBounds(vs, c) {
-        var os = c.offsets;
-        if (c.axis === 'x') {
-            var x = vs[os[0].node].x;
-            c.bounds = new cola.vpsc.Rectangle(x, x,
-                Math.min.apply(Math, os.map(function (o) { return vs[o.node].bounds.y - 20; })),
-                Math.max.apply(Math, os.map(function (o) { return vs[o.node].bounds.Y + 20; })));
-        } else {
-            var y = vs[os[0].node].y;
-            c.bounds = new cola.vpsc.Rectangle(
-                Math.min.apply(Math, os.map(function (o) { return vs[o.node].bounds.x - 20; })),
-                Math.max.apply(Math, os.map(function (o) { return vs[o.node].bounds.X + 20; })),
-                y, y);
-        }
-        return c.bounds;
-    }
+    var svg = this.svg;
 
     d3.json("alignmentconstraints.json", function (error, graph) {
         graph.nodes.forEach(function (v) { v.x = 400, v.y = 50 });
@@ -90,7 +95,7 @@ class Hello extends React.Component {
                 .attr("y2", function (d) { return d.target.y; });
 
             guideline
-                .attr("x1", function (d) { return getAlignmentBounds(graph.nodes, d).x; })
+                .attr("x1", function (d) { return self.getAlignmentBounds(graph.nodes, d).x; })
                 .attr("y1", function (d) {
                     return d.bounds.y;
                 })
@@ -109,14 +114,58 @@ class Hello extends React.Component {
                  });
         });
     });
+  },
 
-    return <div>Hello {this.props.name} </div>;
+  destroy: function(el) {
+    //placeholder
+  },
+};
+
+
+class NetworkView extends React.Component {
+  static propTypes() {
+  }
+
+  componentDidMount() {
+    const el = ReactDOM.findDOMNode(this);
+    d3Network.create(el, this.getNetworkState());
+  }
+
+  componentDidUpdate() {
+    const el = ReactDOM.findDOMNode(this);
+    d3Network.update(el, this.getNetworkState());
+  }
+
+  getNetworkState() {
+    return {
+    };
+  }
+
+  componentWillUnmount() {
+    const el = ReactDOM.findDOMNode(this);
+    d3Network.destroy(el);
+  }
+
+  render() {
+    var divStyle = {
+      width: '100vw',
+      height: '100vh',
+    };
+    return (
+      <div className="NetworkView" style={divStyle}></div>
+    );
   }
 }
 
 window.onload = () => {
   ReactDOM.render(
-    <Hello name="World" />,
+    <SplitPane split="vertical" minSize="50">
+        <div></div>
+        <SplitPane split="horizontal">
+            <NetworkView name="World" />
+            <div></div>
+        </SplitPane>
+    </SplitPane>,
     document.getElementById('root')
   );
 };
