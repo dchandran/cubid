@@ -6,6 +6,7 @@ const hostname = '0.0.0.0';
 const port = 3000;
 
 app.use(express.static('static'));
+app.use(express.static('libs'));
 
 //so that any routing is delegated to the client
 app.get('*', function(req, res) {
