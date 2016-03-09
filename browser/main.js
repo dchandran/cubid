@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const SplitPane = require('react-split-pane');
+
 import './main.css'
 
 const d3Network = {
@@ -157,15 +157,73 @@ class NetworkView extends React.Component {
   }
 }
 
+const _ = require('lodash');
+const reactMixin = require('react-mixin');
+const WidthProvider = require('react-grid-layout').WidthProvider;
+const ReactGridLayoutPre = require('react-grid-layout');
+const PureRenderMixin = require('pure-render-mixin').PureRenderMixin;
+const ReactGridLayout = WidthProvider(ReactGridLayoutPre);
+
+class BasicLayout extends React.Component {
+  constructor() {
+    super();
+    this.props = {};
+    var layout = this.generateLayout();
+    this.state = {
+      layout: layout
+    };
+  }
+
+  generateDOM() {
+    const picStyle = {width:'304px', height: '228px'};
+    const spanStyle = {width:'304px', height: '228px'};
+    return _.map(_.range(this.props.items), function(i) {
+      return (<div key={i}><span style={spanStyle}>{i}</span></div>);
+    });
+  }
+
+  generateLayout() {
+    var p = this.props;
+    debugger;
+    return _.map(new Array(p.items), function(item, i) {
+      var y = _.result(p, 'y') || Math.ceil(Math.random() * 4) + 1;
+      return {x: i * 2 % 12, y: Math.floor(i / 6) * y, w: 2, h: y, i: i.toString()};
+    });
+  }
+
+  onLayoutChange(layout) {
+    this.props.onLayoutChange(layout);
+  }
+
+  render() {
+    return (
+      <ReactGridLayout layout={this.state.layout} onLayoutChange={this.onLayoutChange}
+          {...this.props}>
+        {this.generateDOM()}
+      </ReactGridLayout>
+    );
+  }
+};
+
+BasicLayout.propTypes = {
+ onLayoutChange: React.PropTypes.func.isRequired
+};
+BasicLayout.defaultProps = {
+  className: "layout",
+  items: 5,
+  rowHeight: 300,
+  cols: 12,
+};
+
+//reactMixin(BasicLayout.prototype, PureRenderMixin);
+
 window.onload = () => {
+  function func(e) {
+    console.log(e);
+  }
   ReactDOM.render(
-    <SplitPane split="vertical" minSize="50">
-        <div></div>
-        <SplitPane split="horizontal">
-            <NetworkView name="World" />
-            <div></div>
-        </SplitPane>
-    </SplitPane>,
+    <BasicLayout onLayoutChange={func}>
+    </BasicLayout>,
     document.getElementById('root')
   );
 };
