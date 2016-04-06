@@ -9,6 +9,7 @@
   },
   "dependencies": {
      "webpack": "latest",
+     "expose": "latest",
      "express": "latest",
      "webpack": "latest",
      "path": "latest",
@@ -31,7 +32,9 @@
      "pure-render-mixin": "latest",
      "react-grid-layout": "latest",
      "react-mixin": "latest",
-     "lodash": "latest"
+     "lodash": "latest",
+     "babel-plugin-react-require": "latest",
+     "react-expandable-nav": "latest"
    },
    "repository": "N/A",
    "license": "MIT"
