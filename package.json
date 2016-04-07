@@ -34,7 +34,8 @@
      "react-mixin": "latest",
      "lodash": "latest",
      "babel-plugin-react-require": "latest",
-     "react-expandable-nav": "latest"
+     "react-expandable-nav": "latest",
+     "react-burger-menu": "latest"
    },
    "repository": "N/A",
    "license": "MIT"
