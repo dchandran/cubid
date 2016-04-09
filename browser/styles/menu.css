@@ -14,11 +14,11 @@
 }
 
 .pythonButton {
-  background:url("python.png");
+  background:url("/images/python.png");
   background-size: 100%;
 }
 
 .animationButton {
-  background:url("movie.png");
+  background:url("/images/movie.png");
   background-size: 100%;
 }

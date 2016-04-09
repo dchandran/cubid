@@ -23,12 +23,12 @@ module.exports = {
       {
           test: /\.(jpg|jpeg|gif|png)$/,
           exclude: /node_modules/,
-          loader:'url-loader?limit=1024&name=static/[name].[ext]'
+          loader:'url-loader?limit=1024&name=static/images/[name].[ext]'
       },
       {
           test: /\.(woff|woff2|eot|ttf|svg)$/,
           exclude: /node_modules/,
-          loader: 'url-loader?limit=1024&name=static/[name].[ext]'
+          loader: 'url-loader?limit=1024&name=static/images/[name].[ext]'
       }
     ]
   },
