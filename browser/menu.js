@@ -1,6 +1,7 @@
 const BurgerMenu = require('react-burger-menu').slide;
 require('./images/movie.png');
 require('./images/python.png');
+require('./styles/menu.css');
 
 class Menu extends React.Component {
   render() {
@@ -43,12 +44,8 @@ class Menu extends React.Component {
       debugger;
     };
 
-    let animStyle = {
-      backgroundImage: 'url(movie.png)',
-    }
-
     return (<BurgerMenu styles={styles} width={150}>
-      <input type="button" onClick={myFunc} className="menuButton" style={animStyle}/>
+      <input type="button" onClick={myFunc} className="menuButton animationButton"/>
       <input type="button" onClick={myFunc} className="menuButton pythonButton"/>
     </BurgerMenu>);
   }
