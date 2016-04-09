@@ -10,18 +10,18 @@
     background-clip: padding-box;
 }
 
- .Resizer:hover {
-    -webkit-transition: all 2s ease;
-    transition: all 2s ease;
+.Resizer:hover {
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
 }
 
- .Resizer.horizontal {
-    height: 11px;
-    margin: -5px 0;
-    border-top: 5px solid rgba(255, 255, 255, 0);
-    border-bottom: 5px solid rgba(255, 255, 255, 0);
-    cursor: row-resize;
-    width: 100%;
+.Resizer.horizontal {
+  height: 11px;
+  margin: -5px 0;
+  border-top: 5px solid rgba(255, 255, 255, 0);
+  border-bottom: 5px solid rgba(255, 255, 255, 0);
+  cursor: row-resize;
+  width: 100%;
 }
 
 .Resizer.horizontal:hover {
@@ -66,4 +66,24 @@
 .guideline {
     stroke: orangered;
     stroke-width: 4px;
+}
+
+.menuButton {
+  width:4em;
+  height:4em;
+  border: 0;
+  margin-left: 0;
+  margin-left: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.menuButton:hover {
+  background-color: #99a;
+}
+
+.pythonButton {
+  background:url("images/python.png");
+  background-size: 100%;
 }

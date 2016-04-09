@@ -21,6 +21,8 @@
      "babel-loader": "latest",
      "style-loader": "latest",
      "css-loader": "latest",
+     "url-loader": "latest",
+     "file-loader": "latest",
      "babelify": "latest",
      "babel-preset-react": "latest",
      "brace": "latest",
