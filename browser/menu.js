@@ -45,8 +45,10 @@ class Menu extends React.Component {
     };
 
     return (<BurgerMenu styles={styles} width={150}>
+      <div className="tooltip" data-hint="HELLO">
       <input type="button" onClick={myFunc} className="menuButton animationButton"/>
-      <input type="button" onClick={myFunc} className="menuButton pythonButton"/>
+      </div>
+      <input type="button" onClick={myFunc} className="menuButton pythonButton tooltip"/>
     </BurgerMenu>);
   }
 }
