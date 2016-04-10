@@ -6,7 +6,7 @@
   margin-left: 0;
   margin-top: 1em;
   margin-bottom: 1em;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Helvetica;
 }
 
 .menuButton:hover {
@@ -16,6 +16,7 @@
 .tooltip {
     display: inline;
     position: relative;
+    font-family: Helvetica;
 }
 
 .tooltip:hover {
@@ -63,5 +64,17 @@
 
 .animationButton {
   background:url("/images/movie.png");
+  background-size: 100%;
+}
+
+.mapButton {
+  background:url("/images/map.png");
+  background-size: 100%;
+}
+
+.fileOpenButton {
+  width: 3em;
+  height: 3em;
+  background:url("/images/open_file.png");
   background-size: 100%;
 }
