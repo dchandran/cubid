@@ -55,7 +55,7 @@ class Menu extends React.Component {
       },
       {
         class: 'pythonButton',
-        tooltip: 'Simulate using Python code'
+        tooltip: 'Python code for simulating the system'
       }
     ];
 
